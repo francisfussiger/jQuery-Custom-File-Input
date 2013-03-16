@@ -66,18 +66,20 @@ $.fn.customFileInput = function(){
 	if(fileInput.is('[disabled]')){
 		fileInput.trigger('disable');
 	}
-		
 	
 	//on mousemove, keep file input under the cursor to steal click
-	upload
-		.mousemove(function(e){
-			fileInput.css({
-				'left': e.pageX - upload.offset().left - fileInput.outerWidth() + 20, //position right side 20px right of cursor X)
-				'top': e.pageY - upload.offset().top - $(window).scrollTop() - 3
-			});	
-		})
-		.insertAfter(fileInput); //insert after the input
+	uploadButton.parent().mousemove(function(){
+		var me = $(this);
+		fileInput.css({
+			    'position': 'absolute',
+				'left': "80px",
+				'top': '2px',
+				'width':$(me).css('width'),
+				'height':$(me).css('height')
+			});
+	}).insertAfter(fileInput); //insert after the input
 	
+
 	fileInput.appendTo(upload);
 		
 	//return jQuery
